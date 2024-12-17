@@ -1,4 +1,5 @@
 import 'package:dribble_coffeeshop/widgets/coffee_tile.dart';
+import 'package:dribble_coffeeshop/widgets/coffee_type.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,18 +11,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+// List of coffee types
+
+  final List coffeeTypes = [
+    ['Cappuccino', true],
+    ['Black', false],
+    ['Latte', false],
+    ['Tea', false],
+  ];
+
+  // User tapped on coffee types
+  void handleSelectCoffeeType(int newIndex) {
+    for (var i = 0; i < coffeeTypes.length; i++) {
+      setState(() {
+        coffeeTypes[i][1] = i == newIndex;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
-        leading: Icon(Icons.menu),
-        actions: [
+        leading: const Icon(Icons.menu),
+        actions: const [
           Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: Icon(Icons.person),
-          )
+              padding: EdgeInsets.only(right: 20.0), child: Icon(Icons.person))
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -51,7 +68,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: TextField(
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search_rounded),
+                prefixIcon: const Icon(Icons.search_rounded),
                 hintText: 'Find your coffee...',
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade600),
@@ -64,12 +81,25 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 25),
 
           // Horizontal tabs
+          SizedBox(
+              height: 50,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: coffeeTypes.length,
+                  itemBuilder: (ctx, index) {
+                    var item = coffeeTypes[index];
+
+                    return CoffeeType(
+                        text: item[0],
+                        isSelected: item[1],
+                        onTap: () => handleSelectCoffeeType(index));
+                  })),
 
           // Coffee tiles
           Expanded(
               child: ListView(
             scrollDirection: Axis.horizontal,
-            children: [
+            children: const [
               CoffeeTile(),
               CoffeeTile(),
               CoffeeTile(),

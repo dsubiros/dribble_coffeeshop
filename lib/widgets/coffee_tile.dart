@@ -30,7 +30,7 @@ class CoffeeTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Cappuccino',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
@@ -64,11 +64,11 @@ class CoffeeTile extends StatelessWidget {
 
                         // Plus button
                         Container(
-                            padding: EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
                                 color: Colors.orange,
-                                borderRadius: BorderRadius.circular(12.0)),
-                            child: Icon(Icons.add))
+                                borderRadius: BorderRadius.circular(6.0)),
+                            child: const Icon(Icons.add))
                       ],
                     )
                   ],
