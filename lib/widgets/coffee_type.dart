@@ -17,14 +17,11 @@ class CoffeeType extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.only(left: 25.0),
-        child: Container(
-            child: Text(
-          text,
-          style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-              color: isSelected ? Colors.orange : Colors.white),
-        )),
+        child: Text(text,
+            style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                color: isSelected ? Colors.orange : Colors.white)),
       ),
     );
   }

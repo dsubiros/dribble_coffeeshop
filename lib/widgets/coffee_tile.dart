@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CoffeeTile extends StatelessWidget {
-  const CoffeeTile({super.key});
+  final String imagePath;
+  final String name;
+  final String description;
+  final double price;
+
+  const CoffeeTile({
+    super.key,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.imagePath,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +20,6 @@ class CoffeeTile extends StatelessWidget {
       padding: const EdgeInsets.only(left: 25.0, bottom: 25),
       child: Container(
         width: 200,
-        // height: 100,
         decoration: BoxDecoration(
             color: Colors.black54, borderRadius: BorderRadius.circular(18.0)),
         child: Padding(
@@ -20,7 +30,7 @@ class CoffeeTile extends StatelessWidget {
               // Coffee image
               ClipRRect(
                 borderRadius: BorderRadius.circular(18.0),
-                child: Image.asset('lib/images/coffee1.jpg'),
+                child: Image.asset(imagePath),
               ),
 
               // Coffee name
@@ -30,31 +40,27 @@ class CoffeeTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Cappuccino',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20.0),
-                    ),
-                    Text(
-                      'With Oat Milk',
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
+                    Text(name,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20.0)),
+                    Text(description,
+                        style: TextStyle(color: Colors.grey[700])),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // Price tag
                         RichText(
-                          text: const TextSpan(
+                          text: TextSpan(
                             text: '\$',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 22.0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.orange),
                             children: [
                               TextSpan(
-                                  text: '4.20',
-                                  style: TextStyle(
+                                  text: price.toString(),
+                                  style: const TextStyle(
                                       fontSize: 22.0,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white))
