@@ -23,9 +23,7 @@ class _HomePageState extends State<HomePage> {
   // User tapped on coffee types
   void handleSelectCoffeeType(int newIndex) {
     for (var i = 0; i < coffeeTypes.length; i++) {
-      setState(() {
-        coffeeTypes[i][1] = i == newIndex;
-      });
+      setState(() => coffeeTypes[i][1] = i == newIndex);
     }
   }
 
